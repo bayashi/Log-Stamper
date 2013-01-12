@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Carp qw/croak/;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our $GMTIME = 0;
 
@@ -17,12 +17,12 @@ our @WEEK_DAYS = qw/
 /;
 
 sub new {
-    my ($class, $format) = @_;
+    my ($class, $format, $callback) = @_;
 
     my $self = +{
         stack    => [],
         fmt      => undef,
-        callback => undef,
+        callback => ref($callback) eq 'CODE' ? $callback : undef,
     };
 
     bless $self, $class;
