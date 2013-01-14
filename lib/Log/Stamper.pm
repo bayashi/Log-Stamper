@@ -337,6 +337,17 @@ return the formatted string
 
 return the code reference for filtering.
 
+    use Log::Stamper;
+    my $stamper = Log::Stamper->new(
+        "yyyy",
+        sub {
+            my $str = shift;
+            $str =~ s/0/X/g;
+            return $str;
+        }
+    );
+    print $stamper->format(time()); # 2X13
+
 
 =head1 REPOSITORY
 
